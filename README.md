@@ -2,7 +2,12 @@
 
 A new Flutter application.
 
-## Getting Started
+## Getting Started ...
+![photo_2021-12-07_19-12-19](https://user-images.githubusercontent.com/54605034/145075033-dd513bca-63f8-4497-9d66-ae7269be6efc.jpg)
+
+Hello in Shop App 
+![Apple iPhone 11 Pro Max Presentation (11)](https://user-images.githubusercontent.com/54605034/145075075-3c26faa2-66dc-475c-b0f1-4bf679ce01d1.png)
+
 
 This project is a starting point for a Flutter application.
 
