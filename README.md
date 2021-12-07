@@ -3,7 +3,7 @@
 A new Flutter application.
 
 ## Getting Started ...
-![photo_2021-12-07_19-12-19](https://user-images.githubusercontent.com/54605034/145075033-dd513bca-63f8-4497-9d66-ae7269be6efc.jpg)
+![Apple iPhone 11 Pro Max Presentation (15) (1)](https://user-images.githubusercontent.com/54605034/145075574-2b5420f5-72e8-4601-a54a-eeb85329002e.png)
 
 Hello in Shop App 
 
