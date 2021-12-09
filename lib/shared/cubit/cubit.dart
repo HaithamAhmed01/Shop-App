@@ -9,30 +9,6 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  int currentIndex = 0;
-
-
-  bool ?isBottomShow = false;
-  IconData ?iconChange = Icons.edit;
-
-  void changeBottomSheetState({
-    required bool isShow,
-    required IconData icon,
-  }) {
-    isBottomShow = isShow;
-    iconChange = icon;
-
-    emit(AppChangeBottomSheetState());
-  }
-
-  void changeIndex(int index) {
-    currentIndex = index;
-
-    emit(AppChangeBottomNavBarState());
-  }
-
-
-
   bool? isDark = true;
 
   void changeAppMode({bool? fromShared}) {

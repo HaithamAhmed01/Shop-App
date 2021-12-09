@@ -91,7 +91,6 @@ class ShopCubit extends Cubit<ShopStates> {
       data: {
         'product_id': productId,
       },
-      // token: token,
     ).then((value) {
       changeFavoritesModel = ChangeFavoritesModel.fromJson(value.data);
       // print(value.data);
