@@ -16,7 +16,7 @@ import 'package:shop_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShopCubit extends Cubit<ShopStates> {
-  ShopCubit(): super(ShopInitialState());
+  ShopCubit() : super(ShopInitialState());
 
   static ShopCubit get(context) => BlocProvider.of(context);
 
@@ -37,8 +37,9 @@ class ShopCubit extends Cubit<ShopStates> {
   ];
 
   void changeBottomNav(int index) {
-    currentIndex = index;
-    emit(ShopBottomNavState());
+    if (index==3) getUserData();
+      currentIndex = index;
+      emit(ShopBottomNavState());
   }
 
   HomeModel ?homeModel;
@@ -95,8 +96,8 @@ class ShopCubit extends Cubit<ShopStates> {
       changeFavoritesModel = ChangeFavoritesModel.fromJson(value.data);
       // print(value.data);
       if (!changeFavoritesModel!.status!) {
-        favorites[productId] =favorites[productId]!;
-      }else{
+        favorites[productId] = favorites[productId]!;
+      } else {
         getFavorites();
       }
       emit(ShopSuccessChangeFavoritesState(changeFavoritesModel!));
