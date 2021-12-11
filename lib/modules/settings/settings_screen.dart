@@ -16,7 +16,14 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is ShopLoadingUserDataState){
+          Center(
+              child: AdaptiveIndicator(
+                os: getOS(),
+              ));
+        }
+      },
       builder: (context, state) {
         var model = ShopCubit.get(context).userModel;
         nameController.text = model!.data!.name!;
