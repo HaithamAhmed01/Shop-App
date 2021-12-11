@@ -13,14 +13,7 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {
-        if (state is ShopLoadingGetFavoritesState) {
-          Center(
-              child: AdaptiveIndicator(
-            os: getOS(),
-          ));
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Conditional.single(
           context: context,
