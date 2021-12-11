@@ -14,21 +14,23 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) {
-        if(state is ShopLoadingGetFavoritesState){
+        if (state is ShopLoadingGetFavoritesState) {
           Center(
               child: AdaptiveIndicator(
-                os: getOS(),
-              ));
+            os: getOS(),
+          ));
         }
       },
       builder: (context, state) {
         return Conditional.single(
           context: context,
           conditionBuilder: (context) => state is! ShopLoadingGetFavoritesState,
-          widgetBuilder: (context) => ListView.separated(
+          widgetBuilder: (context) =>ShopCubit.get(context).favoritesModel!.data!.data!.length == 0
+              ? Center(child:Text('You don\'t have item',),)
+              : ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => buildListProduct(
-                ShopCubit.get(context).favoritesModel!.data!.data![index].product, context),
+            itemBuilder: (context, index) =>
+                buildListProduct(ShopCubit.get(context).favoritesModel!.data!.data![index].product, context),
             separatorBuilder: (context, index) => myDivider(),
             itemCount:
                 ShopCubit.get(context).favoritesModel!.data!.data!.length,
@@ -113,15 +115,13 @@ class FavoritesScreen extends StatelessWidget {
                         Spacer(),
                         Expanded(
                           child: IconButton(
-                              icon:
-                              ShopCubit.get(context).favorites[model.id]!
+                              icon: ShopCubit.get(context).favorites[model.id]!
                                   ? Icon(
                                       Icons.favorite,
                                       size: 17.0,
                                       color: Colors.red,
                                     )
-                                  :
-                              Icon(
+                                  : Icon(
                                       Icons.favorite_border,
                                       size: 17.0,
                                       // color: Colors.white,
