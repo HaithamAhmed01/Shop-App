@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:shop_app/layout/cubit/cubit.dart';
 import 'package:shop_app/layout/cubit/states.dart';
 import 'package:shop_app/models/categories_model.dart';
@@ -23,36 +24,14 @@ class ProductsScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return (ShopCubit.get(context).homeModel != null &&
-                ShopCubit.get(context).categoriesModel != null)
-            ? builderWidget(ShopCubit.get(context).homeModel!,
-                ShopCubit.get(context).categoriesModel!, context)
-            : Center(child: AdaptiveIndicator(os: getOS()));
-
-        //   ConditionalBuilder(
-        //   condition: ShopCubit.get(context).homeModel != null &&
-        //       ShopCubit.get(context).categoriesModel != null,
-        //   builder: (context) => builderWidget(ShopCubit.get(context).homeModel!,
-        //       ShopCubit.get(context).categoriesModel!, context),
-        //   fallback: (context) => Center(child: AdaptiveIndicator(os: getOS()))
-        //   //     SingleChildScrollView(
-        //   //   child: Column(
-        //   //     children: [
-        //   //       CardPlaceHolderWithImage(
-        //   //         height: 200,
-        //   //       ),
-        //   //       Padding(
-        //   //         padding: const EdgeInsets.symmetric(horizontal: 20),
-        //   //         child: FlutterShimmnerLoadingWidget(
-        //   //           count: 10,
-        //   //           animate: true,
-        //   //           color: Colors.grey[200],
-        //   //         ),
-        //   //       ),
-        //   //     ],
-        //   //   ),
-        //   // ),
-        // );
+        return Conditional.single(
+          context: context,
+          conditionBuilder: (context) => (ShopCubit.get(context).homeModel != null &&
+              ShopCubit.get(context).categoriesModel != null),
+          widgetBuilder: (context) =>  builderWidget(ShopCubit.get(context).homeModel!,
+              ShopCubit.get(context).categoriesModel!, context),
+          fallbackBuilder:(context) =>  Center(child: AdaptiveIndicator(os: getOS())),
+        );
       },
     );
   }
@@ -65,7 +44,9 @@ class ProductsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CarouselSlider(
-              items: model.data!.banners.map((e) => Image(
+              items: model.data!.banners
+                  .map(
+                    (e) => Image(
                       image: NetworkImage(e.image!),
                       fit: BoxFit.cover,
                       width: double.infinity,
