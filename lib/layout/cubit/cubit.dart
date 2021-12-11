@@ -38,6 +38,7 @@ class ShopCubit extends Cubit<ShopStates> {
 
   void changeBottomNav(int index) {
     if (index==3) getUserData();
+    if (index==2) getFavorites();
       currentIndex = index;
       emit(ShopBottomNavState());
   }
